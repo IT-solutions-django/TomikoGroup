@@ -20,12 +20,14 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [
         ProductPhotoInline,
     ]
+    prepopulated_fields = {'slug': ('title',)}
 
 
 @admin.register(Category) 
 class CategoryAdmin(admin.ModelAdmin): 
     list_display = ['title'] 
     search_fields = ['title']
+    prepopulated_fields = {'slug': ('title',)}
 
 
 @admin.register(Brand) 

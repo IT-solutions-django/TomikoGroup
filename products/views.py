@@ -38,3 +38,14 @@ class CatalogView(View):
             'products': products,
         }
         return render(request, self.template_name, context)
+
+
+class ProductView(View): 
+    template_name = 'products/product.html' 
+
+    def get(self, request, product_slug: str): 
+        product = Product.objects.get(slug=product_slug) 
+        context = {
+            'product': product,
+        }
+        return render(request, self.template_name, context)

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block content %}
+<div>
+    <h1>{{ product.title }}</h1>
+
+    <div>
+        <div>
+            {% for photo in product.photos.all %}
+                <div>
+                    <img style="max-width: 300px;" src="{{ photo.image.url }}" alt="Фото товара">
+                </div>
+            {% endfor %}
+            <div>
+                <div>
+                    <i>{{ product.category.title }}</i>
+                </div>
+                <div>
+                    {{ product.description }}
+                </div>
+                <div>
+                    <p>{{ product.price }} руб.</p>
+                </div>  
+                {% if product.weight %}
+                    <div>
+                        <p>{{ product.weight }} кг</p>
+                    </div>  
+                {% endif %}  
+                {% if product.volume %}
+                    <div>
+                        <p>{{ product.volume }} л</p>
+                    </div>  
+                {% endif %} 
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

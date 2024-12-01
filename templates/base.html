@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+<html lang=en>
+
+<head>
+    <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>{% block title %}{% endblock title %}</title>
+    {% block script %} 
+    {% endblock script %}
+</head>
+
+<body>
+    <div>
+        <a href="">Главная</a>
+        <a href="{% url 'products:catalog' %}">Каталог</a>
+        <a href="">Партнерам</a>
+        <a href="">О нас</a>
+        <a href="">Контакты</a>
+    </div>
+    {% block content %} 
+    {% endblock %}
+</body>
+
+</html>

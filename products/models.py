@@ -6,6 +6,8 @@ from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 import os
 
+from django.urls import reverse
+
 
 class Brand(models.Model): 
     title = models.CharField('Название', max_length=60, null=False)
@@ -20,6 +22,7 @@ class Brand(models.Model):
 
 class Category(models.Model): 
     title = models.CharField('Название', max_length=80, null=False, unique=True)
+    slug = models.SlugField('Слаг')
 
     class Meta:
         verbose_name = 'категория'
@@ -42,6 +45,7 @@ class Product(models.Model):
     price = models.DecimalField('Цена', decimal_places=2, max_digits=10, 
                                 validators=[MinValueValidator(Decimal(0), 'Цена не может быть отрицательной')]) 
     created_at = models.DateTimeField('Дата создания', auto_now_add=True)
+    slug = models.SlugField('Слаг')
 
     class Meta: 
         verbose_name = 'товар'
@@ -49,6 +53,9 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return f'{self.title}'
+    
+    def get_absolute_url(self): 
+        return reverse('products:product', args=(self.slug,))
     
 
 class ProductPhoto(models.Model):
