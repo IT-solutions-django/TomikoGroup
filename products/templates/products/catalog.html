@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block content %}
+<div>
+    <h1><a href="{% url 'products:catalog' %}">Каталог</a></h1>
+
+    <div>
+        <h2>Фильтры</h2>
+        <form action="{% url 'products:catalog' %}">
+            <div>
+                <h3>Категории</h3>
+                {% for category in form.category %}
+                    <p>{{ category }}</p>
+                {% endfor %}
+            </div>
+            <div>
+                <h3>Сортировка</h3>
+                {{ form.sorting }}
+            </div>
+            <div>
+                <button type="submit">Применить фильтры</button>
+            </div>
+        </form>
+    </div>
+    
+    <div>
+        <h2>Товары</h2>
+        {% for product in products %}
+            <div>
+                <div>
+                    <a href="{{ product.get_absolute_url }}">
+                        <img style="max-width: 240px;" src="{{ product.photos.all.0.image.url }}" alt="Фото товара">
+                    </a>
+                </div>
+                <div>
+                    <b>{{ product.title }}</b>
+                    <p>{{ product.category.title }}</p>
+                    <p>{{ product.price }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
