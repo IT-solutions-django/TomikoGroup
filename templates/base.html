@@ -11,12 +11,22 @@
 </head>
 
 <body>
-    <div>
-        <a href="">Главная</a>
-        <a href="{% url 'products:catalog' %}">Каталог</a>
-        <a href="">Партнерам</a>
-        <a href="">О нас</a>
-        <a href="">Контакты</a>
+    <div style="justify-content: center; display: flex; gap: 20px; font-size: 24px;">
+        <div>
+            <a href="">Главная</a>
+        </div>
+        <div>
+            <a href="{% url 'products:catalog' %}">Каталог</a>
+        </div>
+        <div>
+            <a href="">Партнерам</a>
+        </div>
+        <div>
+            <a href="">О нас</a>
+        </div>
+        <div>
+            <a href="">Контакты</a>
+        </div>
     </div>
     {% block content %} 
     {% endblock %}

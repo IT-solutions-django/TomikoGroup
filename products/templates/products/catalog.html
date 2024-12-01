@@ -5,7 +5,8 @@
 <div>
     <h1><a href="{% url 'products:catalog' %}">Каталог</a></h1>
 
-    <div>
+    <div style="display: flex;">
+        <div>
         <h2>Фильтры</h2>
         <form action="{% url 'products:catalog' %}">
             <div>
@@ -18,8 +19,11 @@
                 <h3>Сортировка</h3>
                 {{ form.sorting }}
             </div>
-            <div>
+            <div style="margin-top: 40px;">
                 <button type="submit">Применить фильтры</button>
+            </div>
+            <div style="margin-top: 10px;">
+                <button><a href="{% url 'products:catalog' %}">Сбросить фильтры</a></button>
             </div>
         </form>
     </div>
@@ -41,5 +45,7 @@
             </div>
         {% endfor %}
     </div>
+    </div>
+    
 </div>
 {% endblock %}
