@@ -45,7 +45,7 @@ class Product(models.Model):
     price = models.DecimalField('Цена', decimal_places=2, max_digits=10, 
                                 validators=[MinValueValidator(Decimal(0), 'Цена не может быть отрицательной')]) 
     created_at = models.DateTimeField('Дата создания', auto_now_add=True)
-    slug = models.SlugField('Слаг')
+    slug = models.SlugField('Слаг', max_length=500)
 
     class Meta: 
         verbose_name = 'товар'
