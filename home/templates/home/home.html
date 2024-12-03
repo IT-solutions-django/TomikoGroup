@@ -1,0 +1,39 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<div>
+    <h1>Tomiko Group</h1>
+</div>
+<div>
+    <p>Оставьте заявку и мы вам перезвоним!</p>
+    <form id="requestForm">
+    {% csrf_token %}
+        {{ form }}
+        <button type="submit">Оставить заявку</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+const form = document.querySelector("#requestForm");
+form.addEventListener("submit", async function(t) {
+  t.preventDefault();
+  let a = new FormData(form),
+      e = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+  form.reset();
+  try {
+      let n = await fetch(`${window.origin}/contacts/api/save-request/`, {
+          method: "POST",
+          body: a,
+          headers: {
+              "X-CSRFToken": e
+          }
+      });
+      n.status
+  } catch (o) {
+      console.error("Ошибка запроса:", o)
+  }
+});
+</script>
+{% endblock %}
