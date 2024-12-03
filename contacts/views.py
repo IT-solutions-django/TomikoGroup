@@ -8,7 +8,6 @@ from .services import send_email
 
 class SaveRequestView(View): 
     def post(self, request): 
-        print('Пост запрос')
         form: RequestForm = RequestForm(request.POST) 
         if form.is_valid(): 
             new_request = form.save() 
@@ -20,16 +19,11 @@ class SaveRequestView(View):
                 f'\nИмя: {new_request.name}'
             )
 
-            print(form.data)
-            print(recipient)
-            print(subject)
-            print(content)
-            
             send_email(
                 recipient=recipient, 
                 subject=subject, 
                 content=content 
             )
-
+            
             return JsonResponse({'status': 'ok'})
         return JsonResponse({'status': 'error'})

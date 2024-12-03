@@ -17,15 +17,11 @@
 {% block script %}
 <script>
 const form = document.querySelector("#requestForm");
-console.log(form)
 form.addEventListener("submit", async function(t) {
   t.preventDefault();
   let a = new FormData(form),
       e = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
-      console.log(e);
-      console.log(a);
   form.reset();
-//   showToast();
   try {
       let n = await fetch(`${window.origin}/contacts/api/save-request/`, {
           method: "POST",
@@ -35,7 +31,6 @@ form.addEventListener("submit", async function(t) {
           }
       });
       n.status
-      console.log(n)
   } catch (o) {
       console.error("Ошибка запроса:", o)
   }
