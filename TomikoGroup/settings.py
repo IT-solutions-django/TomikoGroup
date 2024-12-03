@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from loguru import logger
 
 
 load_dotenv()
@@ -139,3 +140,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# Loguru
+logger.add(
+    "logs/logs.log", 
+    format='{time} {level} {message}', 
+    rotation="10 MB", 
+    retention="2 days",
+    compression="zip", 
+    level="DEBUG", 
+    enqueue=True
+)
