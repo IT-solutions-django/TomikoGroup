@@ -47,7 +47,8 @@ INSTALLED_APPS = [
 
     'products',
     'home',
-    'contacts'
+    'contacts', 
+    'reviews',
 ]
 
 MIDDLEWARE = [
@@ -151,3 +152,22 @@ logger.add(
     level="DEBUG", 
     enqueue=True
 )
+
+
+# Redis 
+# REDIS_HOST = 'redis' 
+
+# Для локальной разработки
+REDIS_HOST = 'localhost' 
+
+REDIS_PORT = '6379' 
+REDIS_PASSWORD = os.getenv('REDIS_PASSWORD')
+
+# Celery
+CELERY_BROKER_URL = f'redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}/0' 
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600} 
+CELERY_RESULT_BACKEND = f'redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}/0' 
+CELERY_ACCEPT_CONTENT = ['application/json'] 
+CELERY_TASK_SERIALIZER = 'json' 
+CELERY_RESULT_serializer = 'json' 
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
