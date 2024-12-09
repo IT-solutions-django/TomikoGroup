@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'home',
     'contacts', 
     'reviews',
+    'clips',
 ]
 
 MIDDLEWARE = [
